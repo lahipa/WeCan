@@ -15,7 +15,10 @@ export default function CardCampaign(props) {
   )
 
   return (
-    <div className="border border-gray-300 rounded-md relative overflow-hidden">
+    <div
+      data-testid="card"
+      className="border border-gray-300 rounded-md relative overflow-hidden"
+    >
       <div style={{ height: 200 }}>
         <img
           src={data?.image}
@@ -28,7 +31,7 @@ export default function CardCampaign(props) {
         
         <div className="py-4">
           <div className="w-full h-1 relative bg-gray-400 overflow-hidden rounded-full">
-            <div className={progressbarclass} style={{ width: `${data?.donation_percentage * 100}%` }} />
+            <div data-testid="progress" className={progressbarclass} style={{ width: `${data?.donation_percentage * 100}%` }} />
           </div>
         </div>
 
