@@ -31,7 +31,7 @@ export default function CardCampaign(props) {
         
         <div className="py-4">
           <div className="w-full h-1 relative bg-gray-400 overflow-hidden rounded-full">
-            <div data-testid="progress" className={progressbarclass} style={{ width: `${data?.donation_percentage * 100}%` }} />
+            <div data-testid="card-progress" className={progressbarclass} style={{ width: `${data?.donation_percentage * 100}%` }} />
           </div>
         </div>
 

@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 // Components
 import { Layout } from "../components/templates";
-import { CardCampaign } from "../components/molecules";
-// Data
-import { connect } from "react-redux";
-import { getDataCampigns } from "../reduxs/actions";
+import { SectionCampaign } from "../components/organisms";
 
 class Home extends Component {
   constructor(props) {
@@ -16,20 +13,8 @@ class Home extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.getDataCampigns();
-  }
-
   render() {
-    const { campaigns, shorting } = this.props;
-
-    const shortedData = [...campaigns];
-
-    if (shorting === "donation-goal") {
-      shortedData.sort((a, b) => { return a.donation_target - b.donation_target; });
-    } else if (shorting === "days-left") {
-      shortedData.sort((a, b) => { return a.days_remaining - b.days_remaining; });
-    }
+    
 
     return (
       <Layout>
@@ -48,30 +33,11 @@ class Home extends Component {
           <meta property="og:hashtag" content="#Kitabisa #Fundraising" />
         </Helmet>
         
-        <section className="py-2">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {shortedData.map((campaign, i) => {
-              return (
-                <CardCampaign
-                  key={i.toString()}
-                  data={campaign}
-                />  
-              )
-            })}
-          </div>
-        </section>
+        <SectionCampaign />
+        
       </Layout>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  campaigns: state.rdccampaigns.campaigns,
-  shorting: state.rdccampaigns.shorting,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getDataCampigns: () => dispatch(getDataCampigns()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

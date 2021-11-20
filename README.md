@@ -5,10 +5,11 @@ Description: WeCan sample is platform that can connect people who needs help wit
 ## Structure
 
 Backend: 
-- Build to access json file in external that blocked by cors if access it from client, and pass it to frontend.
+- Build to access external json file that blocked by cors if access it from client, and pass it to frontend.
+- Build to spesific cors setting for client.
 
 Frontend
-- Build UI using atomic design concept
+- Build UI using atomic design concept for better maintenence and testing
 - State management using redux and redux thunk
 
 
@@ -23,6 +24,7 @@ Follow below steps to run project,
 3. Run `npm install` command to install all dependencies
 4. Execute `npm run dev` command to run the project
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Execute `npm run test` command to run the unit test
 
 ## Connect with the Author
 

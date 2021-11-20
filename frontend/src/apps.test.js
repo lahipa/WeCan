@@ -2,10 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+// Reduxs
+import { Provider } from "react-redux";
+import { store } from "./reduxs";
 // Components
 import App from "./App";
 import { Button } from "./components/atoms";
 import { CardCampaign } from "./components/molecules";
+import { SectionCampaign } from "./components/organisms";
 
 const data = {
   campaigner: "Rachel Vennya",
@@ -57,6 +61,24 @@ describe("Components rendering", () => {
   it("Bar color red if donation reached inside card", () => {
     const { getByTestId } = render(<CardCampaign data={data} />);
 
-    expect(getByTestId("progress").classList.contains("bg-red-500")).toBeTruthy();
+    expect(getByTestId("card-progress").classList.contains("bg-red-500")).toBeTruthy();
   });
+});
+
+it("Render list data of campaign", async () => {
+  try {
+    const CampaignComponent = () => {
+      return (
+        <Provider store={store}>
+          <SectionCampaign />
+        </Provider>
+      )
+    };
+
+    const { findByAltText } = render(<CampaignComponent />);
+
+    expect(await findByAltText("Rachel Untuk Tsunami Banten dan Lampung")).toBeTruthy();
+  } catch (e) {
+    expect(e).toMatch("error");
+  }
 });
